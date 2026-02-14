@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+:root {
+  --font-body: 'Manrope', 'Segoe UI', sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+
+  --bg-main: #f2ede6;
+  --bg-alt: #e9dfd2;
+  --surface: #fffdf8;
+  --text-primary: #1e2a33;
+  --text-secondary: #44535f;
+  --text-muted: #7b8a96;
+  --accent: #b7774f;
+  --accent-contrast: #fff8f3;
+  --border-soft: #dbcdbf;
+  --border-strong: #c9b6a4;
+  --shadow-sm: 0 14px 36px -24px rgba(18, 34, 44, 0.42);
+  --shadow-lg: 0 28px 48px -26px rgba(18, 34, 44, 0.5);
+}
+
+* {
+  border-color: var(--border-soft);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f2ede6 0%, #ebe1d5 55%, #f6f1ea 100%);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.hero-pattern {
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(183, 119, 79, 0.22), transparent 42%),
+    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.18), transparent 38%),
+    linear-gradient(160deg, rgba(17, 34, 44, 0.18), rgba(17, 34, 44, 0.32));
+}
+
+@media (max-width: 768px) {
+  body {
+    background: linear-gradient(180deg, #f5f0e8 0%, #f0e5d9 100%);
+  }
+}
