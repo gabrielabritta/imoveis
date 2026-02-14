@@ -8,6 +8,11 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+def _split_csv_env(name, default=''):
+    raw_value = os.environ.get(name, default)
+    return [item.strip() for item in raw_value.split(',') if item.strip()]
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-dev-key-change-in-production')
 
@@ -18,7 +23,30 @@ DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+    ALLOWED_HOSTS = _split_csv_env('ALLOWED_HOSTS', 'localhost,127.0.0.1')
+
+# Trust HTTPS information forwarded by reverse proxies (e.g., Nginx)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS = _split_csv_env(
+        'CSRF_TRUSTED_ORIGINS',
+        'http://localhost:3000,http://localhost:5173,http://localhost,http://127.0.0.1:3000,http://127.0.0.1:5173'
+    )
+else:
+    default_csrf_origins = []
+    for host in ALLOWED_HOSTS:
+        if host == '*':
+            continue
+        if host.startswith('.'):
+            default_csrf_origins.append(f'https://*{host}')
+            continue
+        default_csrf_origins.append(f'https://{host}')
+
+    CSRF_TRUSTED_ORIGINS = _split_csv_env('CSRF_TRUSTED_ORIGINS', ','.join(default_csrf_origins))
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
 
 
 # Application definition
