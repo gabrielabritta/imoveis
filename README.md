@@ -145,6 +145,16 @@ Acesse `/admin/` com as credenciais do superusuário.
 - Preview de imagens inline
 - Marcar imóveis como destaque
 
+
+## 🔎 SEO e Indexação (Google/Bing)
+
+Arquivos básicos para indexação já incluídos no frontend:
+- `frontend/public/robots.txt`
+- `frontend/public/sitemap.xml`
+- Meta tags principais no `frontend/index.html` (`description`, `robots`, Open Graph, canonical, JSON-LD)
+
+> **Importante:** substitua `https://seu-dominio.com` pelos URLs reais do seu domínio em `robots.txt`, `sitemap.xml` e JSON-LD antes de publicar em produção.
+
 ## 🌐 Deploy em Produção
 
 ### 1. Configurar variáveis de ambiente
