@@ -47,6 +47,11 @@ class PropertyApiTests(APITestCase):
             is_active=True,
         )
 
+    def test_property_creation_does_not_auto_create_gallery_image(self):
+        property_obj = self.create_property('Imovel Sem Auto Galeria', '350000.00')
+
+        self.assertEqual(property_obj.images.count(), 0)
+
     def test_property_list_sort_price_asc(self):
         self.create_property('Imovel C', '900000.00')
         self.create_property('Imovel A', '300000.00')

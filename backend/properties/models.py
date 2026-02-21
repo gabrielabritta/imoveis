@@ -66,19 +66,6 @@ class Property(models.Model):
     def formatted_price(self):
         return f'R$ {self.price:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        # Keep at least one gallery image linked to the main image.
-        if self.main_image and not self.images.exists():
-            PropertyImage.objects.create(
-                property=self,
-                image=self.main_image.name,
-                caption='Imagem principal',
-                order=0,
-            )
-
-
 class PropertyImage(models.Model):
     """Additional images for a property."""
 
