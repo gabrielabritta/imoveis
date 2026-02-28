@@ -22,5 +22,8 @@ python manage.py runscript initialize_data || echo "ℹ️  Dados já existem ou
 echo "📁 Coletando arquivos estáticos..."
 python manage.py collectstatic --noinput
 
+echo "🔐 Ajustando permissões de mídia..."
+chmod -R 755 /app/media
+
 echo "🚀 Iniciando servidor..."
 exec gunicorn --bind 0.0.0.0:8000 --workers 2 core.wsgi:application

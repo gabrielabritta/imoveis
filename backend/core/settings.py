@@ -151,6 +151,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost',
     'http://127.0.0.1:3000',
     'http://127.0.0.1:5173',
+    'https://anello.abritta.net',
+    'http://168.138.134.30',
 ]
 CORS_ALLOW_ALL_ORIGINS = DEBUG
 

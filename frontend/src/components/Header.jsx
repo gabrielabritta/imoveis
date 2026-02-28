@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Building2, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { Link, NavLink } from 'react-router-dom'
 import { WhatsAppButton } from '@/components/WhatsAppButton'
 import { useSiteContact } from '@/context/SiteContactContext'
@@ -17,9 +17,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-[var(--border-soft)] bg-[var(--surface)]/95 backdrop-blur">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:h-20 md:px-6">
         <Link to="/" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--text-primary)] text-[var(--accent-contrast)] shadow-[var(--shadow-sm)]">
-            <Building2 className="h-5 w-5" />
-          </div>
+          <img src="/logo.png" alt="Anello Imóveis" className="h-11 w-11 rounded-xl object-contain shadow-[var(--shadow-sm)]" />
           <div>
             <p className="text-lg font-semibold leading-none [font-family:var(--font-display)]">
               {contact.site_name}
